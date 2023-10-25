@@ -1,21 +1,26 @@
-import java.awt.Point;
 import java.util.Scanner;
 public class Homework4 {
-    static void swap(Point m, Point n) {
-        Point temp1 = new Point(m.x, n.y);
-        m.x = n.x;
-        m.y = n.y;
-        n.x = temp1.x;
-        n.y = temp1.y;
+    static int gcd(int m, int n) {
+        if (n == 0) return m;
+        if (m > n) return gcd(n, m%n);
+        else return gcd(m, n%m);
     }
-    public static int gcd(int m, int n) {
-        if (n == 0) { return m; }
-        else if (m % n == 0) { return n; }
-        else {
-            m = m % n;
-            //swap(m, n);
-            return gcd(n, m % n);
+    static int gcd2(int a, int b) {
+        int tmp;
+        //큰 수가 앞으로 오도록
+        if(a < b) {
+            tmp = a;
+            a = b;
+            b = tmp;
         }
+
+        while (b != 0) {
+            tmp = a % b;
+            a = b;
+            b = tmp;
+        }
+        return a;
+
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
